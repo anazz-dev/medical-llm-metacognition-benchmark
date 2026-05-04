@@ -1,0 +1,11 @@
+{
+  "n_trials_run": 135,
+  "n_valid_choice_trials": 108,
+  "malformed_or_error_rate": 0.0,
+  "accuracy": 0.9444444444444444,
+  "mean_confidence": 0.7810185185185186,
+  "brier_score": 0.07474537037037036,
+  "ece_10_bins": 0.16342592592592603,
+  "auroc2_confidence_correctness": 0.8725490196078431,
+  "more_information_needed_accuracy": 0.837037037037037
+}

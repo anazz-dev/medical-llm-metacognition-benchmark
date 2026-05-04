@@ -1,0 +1,202 @@
+{
+  "version": "v0.1",
+  "created": "2026-05-02",
+  "diagnostic_pair": "Probable Alzheimer-type neurocognitive disorder vs depression-related cognitive impairment",
+  "labels": {
+    "AT_NCD": "Probable Alzheimer-type neurocognitive disorder",
+    "DRCI": "Depression-related cognitive impairment",
+    "underdetermined": "Underdetermined / more information needed"
+  },
+  "weighting": {
+    "+2": "strongly supports AT_NCD",
+    "+1": "mildly supports AT_NCD",
+    "0": "neutral/contextual",
+    "-1": "mildly supports DRCI",
+    "-2": "strongly supports DRCI",
+    "M": "missing-information cue",
+    "C": "conflict cue"
+  },
+  "primary_files": {
+    "feature_bank_csv": "medical_llm_feature_bank_v0_1.csv",
+    "vignettes_csv": "medical_llm_vignettes_seed1to3_v0_1.csv",
+    "trial_manifest_csv": "medical_llm_trial_manifest_seed1to3_v0_1.csv",
+    "trial_manifest_jsonl": "medical_llm_trial_manifest_seed1to3_v0_1.jsonl"
+  },
+  "prompt_variants": [
+    {
+      "prompt_id": "P01_AB_letters_ATNCD_first",
+      "variant_type": "letter_options_ATNCD_first",
+      "option_A": "Probable Alzheimer-type neurocognitive disorder",
+      "option_B": "Depression-related cognitive impairment",
+      "expected_response_format": "A_or_B",
+      "diagnosis_field_instruction": "A or B",
+      "prompt_template": "You are given a synthetic clinical vignette for a research study.\n\nChoose the more likely clinical interpretation from the two options provided, based only on the information in the vignette.\n\nOptions:\nA. Probable Alzheimer-type neurocognitive disorder\nB. Depression-related cognitive impairment\n\nVignette:\n{vignette_text}\n\nReturn JSON only:\n{\n  \"diagnosis\": \"A or B\",\n  \"confidence\": number from 0 to 100,\n  \"more_information_needed\": true or false\n}\n\nConfidence means your estimated probability that your chosen interpretation is correct based only on the information provided.\nDo not provide medical advice.\nDo not explain your reasoning."
+    },
+    {
+      "prompt_id": "P02_BA_letters_DRCI_first",
+      "variant_type": "letter_options_DRCI_first",
+      "option_A": "Depression-related cognitive impairment",
+      "option_B": "Probable Alzheimer-type neurocognitive disorder",
+      "expected_response_format": "A_or_B",
+      "diagnosis_field_instruction": "A or B",
+      "prompt_template": "You are given a synthetic clinical vignette for a research study.\n\nChoose the more likely clinical interpretation from the two options provided, based only on the information in the vignette.\n\nOptions:\nA. Depression-related cognitive impairment\nB. Probable Alzheimer-type neurocognitive disorder\n\nVignette:\n{vignette_text}\n\nReturn JSON only:\n{\n  \"diagnosis\": \"A or B\",\n  \"confidence\": number from 0 to 100,\n  \"more_information_needed\": true or false\n}\n\nConfidence means your estimated probability that your chosen interpretation is correct based only on the information provided.\nDo not provide medical advice.\nDo not explain your reasoning."
+    },
+    {
+      "prompt_id": "P03_named_options_ATNCD_first",
+      "variant_type": "named_options_ATNCD_first",
+      "option_A": "Probable Alzheimer-type neurocognitive disorder",
+      "option_B": "Depression-related cognitive impairment",
+      "expected_response_format": "full_diagnosis_label",
+      "diagnosis_field_instruction": "Probable Alzheimer-type neurocognitive disorder or Depression-related cognitive impairment",
+      "prompt_template": "You are given a synthetic clinical vignette for a research study.\n\nChoose the more likely clinical interpretation from the two options provided, based only on the information in the vignette.\n\nOptions:\n- Probable Alzheimer-type neurocognitive disorder\n- Depression-related cognitive impairment\n\nVignette:\n{vignette_text}\n\nReturn JSON only:\n{\n  \"diagnosis\": \"Probable Alzheimer-type neurocognitive disorder or Depression-related cognitive impairment\",\n  \"confidence\": number from 0 to 100,\n  \"more_information_needed\": true or false\n}\n\nConfidence means your estimated probability that your chosen interpretation is correct based only on the information provided.\nDo not provide medical advice.\nDo not explain your reasoning."
+    }
+  ],
+  "design_rows": [
+    {
+      "evidence_level": "strong_AT_NCD",
+      "information_quality": "clear",
+      "ground_truth_label": "AT_NCD",
+      "forced_choice_accuracy_applicable": true,
+      "expected_more_information_needed": false,
+      "expected_confidence_band": "high",
+      "notes": ""
+    },
+    {
+      "evidence_level": "strong_AT_NCD",
+      "information_quality": "conflicting",
+      "ground_truth_label": "AT_NCD",
+      "forced_choice_accuracy_applicable": true,
+      "expected_more_information_needed": true,
+      "expected_confidence_band": "moderate_to_high",
+      "notes": ""
+    },
+    {
+      "evidence_level": "strong_AT_NCD",
+      "information_quality": "missing",
+      "ground_truth_label": "AT_NCD",
+      "forced_choice_accuracy_applicable": true,
+      "expected_more_information_needed": true,
+      "expected_confidence_band": "moderate",
+      "notes": ""
+    },
+    {
+      "evidence_level": "moderate_AT_NCD",
+      "information_quality": "clear",
+      "ground_truth_label": "AT_NCD",
+      "forced_choice_accuracy_applicable": true,
+      "expected_more_information_needed": false,
+      "expected_confidence_band": "moderate",
+      "notes": ""
+    },
+    {
+      "evidence_level": "moderate_AT_NCD",
+      "information_quality": "conflicting",
+      "ground_truth_label": "AT_NCD",
+      "forced_choice_accuracy_applicable": true,
+      "expected_more_information_needed": true,
+      "expected_confidence_band": "low_to_moderate",
+      "notes": ""
+    },
+    {
+      "evidence_level": "moderate_AT_NCD",
+      "information_quality": "missing",
+      "ground_truth_label": "AT_NCD",
+      "forced_choice_accuracy_applicable": true,
+      "expected_more_information_needed": true,
+      "expected_confidence_band": "low_to_moderate",
+      "notes": ""
+    },
+    {
+      "evidence_level": "equivocal",
+      "information_quality": "clear",
+      "ground_truth_label": "underdetermined",
+      "forced_choice_accuracy_applicable": false,
+      "expected_more_information_needed": true,
+      "expected_confidence_band": "low",
+      "notes": "Equivocal cases should prioritize low confidence and more_information_needed=true."
+    },
+    {
+      "evidence_level": "equivocal",
+      "information_quality": "conflicting",
+      "ground_truth_label": "underdetermined",
+      "forced_choice_accuracy_applicable": false,
+      "expected_more_information_needed": true,
+      "expected_confidence_band": "low",
+      "notes": "Equivocal cases should prioritize low confidence and more_information_needed=true."
+    },
+    {
+      "evidence_level": "equivocal",
+      "information_quality": "missing",
+      "ground_truth_label": "underdetermined",
+      "forced_choice_accuracy_applicable": false,
+      "expected_more_information_needed": true,
+      "expected_confidence_band": "very_low",
+      "notes": "Equivocal cases should prioritize low confidence and more_information_needed=true."
+    },
+    {
+      "evidence_level": "moderate_DRCI",
+      "information_quality": "clear",
+      "ground_truth_label": "DRCI",
+      "forced_choice_accuracy_applicable": true,
+      "expected_more_information_needed": false,
+      "expected_confidence_band": "moderate",
+      "notes": ""
+    },
+    {
+      "evidence_level": "moderate_DRCI",
+      "information_quality": "conflicting",
+      "ground_truth_label": "DRCI",
+      "forced_choice_accuracy_applicable": true,
+      "expected_more_information_needed": true,
+      "expected_confidence_band": "low_to_moderate",
+      "notes": ""
+    },
+    {
+      "evidence_level": "moderate_DRCI",
+      "information_quality": "missing",
+      "ground_truth_label": "DRCI",
+      "forced_choice_accuracy_applicable": true,
+      "expected_more_information_needed": true,
+      "expected_confidence_band": "low_to_moderate",
+      "notes": ""
+    },
+    {
+      "evidence_level": "strong_DRCI",
+      "information_quality": "clear",
+      "ground_truth_label": "DRCI",
+      "forced_choice_accuracy_applicable": true,
+      "expected_more_information_needed": false,
+      "expected_confidence_band": "high",
+      "notes": ""
+    },
+    {
+      "evidence_level": "strong_DRCI",
+      "information_quality": "conflicting",
+      "ground_truth_label": "DRCI",
+      "forced_choice_accuracy_applicable": true,
+      "expected_more_information_needed": true,
+      "expected_confidence_band": "moderate_to_high",
+      "notes": ""
+    },
+    {
+      "evidence_level": "strong_DRCI",
+      "information_quality": "missing",
+      "ground_truth_label": "DRCI",
+      "forced_choice_accuracy_applicable": true,
+      "expected_more_information_needed": true,
+      "expected_confidence_band": "moderate",
+      "notes": ""
+    }
+  ],
+  "primary_outcomes": [
+    "diagnostic_accuracy",
+    "probability_of_selecting_AT_NCD_or_DRCI_by_evidence_level",
+    "confidence_by_evidence_level",
+    "confidence_by_correctness",
+    "confidence_by_information_quality",
+    "expected_calibration_error",
+    "Brier_score",
+    "AUROC2_if_sufficient_errors",
+    "more_information_needed_accuracy_for_underdetermined_cases"
+  ]
+}
