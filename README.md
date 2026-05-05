@@ -2,7 +2,7 @@
 
 This repository contains the data, prompts, model outputs, analysis files, and manuscript source for the preprint:
 
-**Large Language Models Show Partial Metacognitive Sensitivity in Medical Reasoning: Evidence-Sensitive Confidence in a Controlled Clinical Benchmark**
+**Large Language Models Show Metacognitive Sensitivity in Medical Reasoning**
 
 ## Overview
 
